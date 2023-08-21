@@ -20,8 +20,16 @@ namespace DisplayRecs
             ///string directory = @"C:\Users\User\source\repos\DisplayRecs";
             string fileName = @"\ManagementRecs.txt";
             string managementRecs = directory + fileName;
-
-            string[] managementRecsRecordsFromFile = Helper.ReadFileIntoArray(managementRecs);
+            string[] managementRecsRecordsFromFile;
+            try
+            {
+                managementRecsRecordsFromFile = Helper.ReadFileIntoArray(managementRecs);
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message, "Error #1", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
             List<string> listOfRecords = Helper.ConvertArrayToList(managementRecsRecordsFromFile);
 
             dataGridViewAllRecords.Columns.Add("Manager_Number", "Manager Number");

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DisplayRecs
 {
@@ -18,7 +19,17 @@ namespace DisplayRecs
 
         public static List<string> ConvertArrayToList(string[] array)
         {
-            return new List<string>(array);
+            List<string> list = null;
+            try
+            {
+                list = new List<string>(array);
+            }
+            catch (NullReferenceException nre)
+            {
+                Console.WriteLine("Issue with array does it contain data " + nre.Message);
+            }
+
+            return list;
         }
     }
 }
